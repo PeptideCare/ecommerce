@@ -1,12 +1,10 @@
 package com.gongbu.ecommerce.member.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Value;
+import lombok.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Member {
     private final MemberSeq seq; // PK
     private final String id;  // 사용자 ID

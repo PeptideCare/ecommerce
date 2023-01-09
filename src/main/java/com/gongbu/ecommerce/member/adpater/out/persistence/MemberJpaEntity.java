@@ -1,6 +1,7 @@
 package com.gongbu.ecommerce.member.adpater.out.persistence;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class MemberJpaEntity {
 
     @Id
