@@ -1,13 +1,13 @@
 package com.gongbu.ecommerce.member.adpater.out.persistence;
 
-import com.gongbu.ecommerce.member.application.port.out.LoadMemberPort;
+import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityNotFoundException;
 
 @RequiredArgsConstructor
-public class MemberPersistentAdapter implements LoadMemberPort {
+public class MemberPersistentAdapter implements AccessMemberPort {
 
     private final MemberMapper memberMapper;
     private final MemberRepository memberRepository;
@@ -19,5 +19,12 @@ public class MemberPersistentAdapter implements LoadMemberPort {
 
         return memberMapper.mapToDomainEntity(memberJpaEntity);
 
+    }
+
+    @Override
+    public Long insertMember(Member member) {
+        MemberJpaEntity memberJpaEntity = memberMapper.mapToJpaEntity(member);
+        MemberJpaEntity savedMemberJpaEntity = memberRepository.save(memberJpaEntity);
+        return savedMemberJpaEntity.getSeq();
     }
 }
