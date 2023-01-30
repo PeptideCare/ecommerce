@@ -22,8 +22,8 @@ public class MemberJpaEntity {
     @GeneratedValue
     private Long seq;
 
-    private String id;
-    private String password;
+    private String memberId;
+    private String memberPw;
     private String memberType;
     private Long myPoint;
 }

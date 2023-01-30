@@ -1,5 +1,6 @@
 package com.gongbu.ecommerce.member.application.service;
 
+import com.gongbu.ecommerce.member.adpater.in.web.LoginRequest;
 import com.gongbu.ecommerce.member.application.port.in.AccessUseCase;
 import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
@@ -14,9 +15,9 @@ public class AccessService implements AccessUseCase {
     private final AccessMemberPort accessMemberPort;
 
     @Override
-    public void login(Member member) {
-        Member findMember = accessMemberPort.loadMember(member.getSeq());
-        if (member.getPassword().equals(findMember.getPassword())) {
+    public void login(LoginRequest loginRequest) {
+        Member findMember = accessMemberPort.loadMember(loginRequest.getMemberId());
+        if (loginRequest.getMemberPw().equals(findMember.getMemberPw())) {
             System.out.println("login success");
         } else {
             System.out.println("password is wrong");

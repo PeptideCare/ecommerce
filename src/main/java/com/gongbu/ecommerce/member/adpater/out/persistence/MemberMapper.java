@@ -18,8 +18,8 @@ public class MemberMapper {
 
         Member member = Member.builder()
                 .seq(new Member.MemberSeq(memberJpaEntity.getSeq()))
-                .id(memberJpaEntity.getId())
-                .password(memberJpaEntity.getPassword())
+                .memberId(memberJpaEntity.getMemberId())
+                .memberPw(memberJpaEntity.getMemberPw())
                 .memberType(memberType)
                 .myPoint(memberJpaEntity.getMyPoint())
                 .build();
@@ -37,8 +37,8 @@ public class MemberMapper {
 
         MemberJpaEntity memberJpaEntity = MemberJpaEntity.builder()
                 .seq(member.getSeq().getValue())
-                .id(member.getId())
-                .password(member.getPassword())
+                .memberId(member.getMemberId())
+                .memberPw(member.getMemberPw())
                 .memberType(memberType)
                 .myPoint(member.getMyPoint())
                 .build();
