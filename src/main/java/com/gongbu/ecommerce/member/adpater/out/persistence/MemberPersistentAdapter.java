@@ -14,7 +14,6 @@ public class MemberPersistentAdapter implements AccessMemberPort {
     private final MemberRepository memberRepository;
     @Override
     public Member loadMember(String memberId) {
-        //todo exception
         MemberJpaEntity memberJpaEntity = memberRepository.findByMemberId(memberId).
                 orElseThrow(EntityNotFoundException::new);
 
@@ -23,8 +22,7 @@ public class MemberPersistentAdapter implements AccessMemberPort {
     }
 
     @Override
-    public Long insertMember(Member member) {
-        MemberJpaEntity memberJpaEntity = memberMapper.mapToJpaEntity(member);
+    public Long insertMember(MemberJpaEntity memberJpaEntity) {
         MemberJpaEntity savedMemberJpaEntity = memberRepository.save(memberJpaEntity);
         return savedMemberJpaEntity.getSeq();
     }

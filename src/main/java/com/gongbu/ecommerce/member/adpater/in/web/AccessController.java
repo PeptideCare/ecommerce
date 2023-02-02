@@ -12,12 +12,17 @@ public class AccessController {
     private final AccessUseCase accessUseCase;
 
     // 로그인
-    @PostMapping("/ecommnerce/login")
+    @PostMapping("/ecommerce/login")
     public void login(
             @RequestBody LoginRequest loginRequest) {
         accessUseCase.login(loginRequest);
     }
 
-
+    // 회원가입
+    @PostMapping("/ecommerce/register")
+    public void register(
+            @RequestBody RegisterRequest registerRequest) {
+        accessUseCase.register(registerRequest);
+    }
 
 }
