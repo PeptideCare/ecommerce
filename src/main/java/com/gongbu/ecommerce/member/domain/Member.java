@@ -3,7 +3,7 @@ package com.gongbu.ecommerce.member.domain;
 import lombok.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
+@Data
 @Builder
 public class Member {
     private final MemberSeq seq; // PK

@@ -1,6 +1,5 @@
 package com.gongbu.ecommerce.member.adpater.out.persistence;
 
-import com.gongbu.ecommerce.member.adpater.in.web.LoginRequest;
 import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
 import lombok.RequiredArgsConstructor;

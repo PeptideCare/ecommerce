@@ -1,4 +1,4 @@
-package com.gongbu.ecommerce.member.adpater.out.persistence;
+package com.gongbu.ecommerce.item.adapter.out.persistence;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,19 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "member")
+@Table(name = "item")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberJpaEntity {
-
+public class ItemJpaEntity {
     @Id
     @GeneratedValue
     private Long seq; // PK
-
-    private String memberId; // 회원 ID
-    private String memberPw; // 비밀번호
-    private String memberType; // 회원 타입
-    private Long myPoint; // 포인트
+    private int stock; // 재고수량
+    private String name; // 물품 이름
+    private double rating; // 평점
+    private Long price; // 가격
+    private Long lowerCategorySeq; // 카테고리 seq
 }

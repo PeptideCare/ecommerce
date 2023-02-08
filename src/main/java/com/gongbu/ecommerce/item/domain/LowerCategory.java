@@ -14,7 +14,7 @@ public class LowerCategory {
     @NonNull private final UpperCategory.UpperCategorySeq upperCategorySeq; // 상위 카테고리 PK
 
     @Value
-    public class LowerCategorySeq {
+    public static class LowerCategorySeq {
         private Long value;
     }
 }

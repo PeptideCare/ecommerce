@@ -1,12 +1,10 @@
 package com.gongbu.ecommerce.item.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
 @RequiredArgsConstructor
-@Getter
+@Data
+@Builder
 public class Item {
 
     private final ItemSeq seq; // PK
@@ -17,7 +15,7 @@ public class Item {
     @NonNull private LowerCategory.LowerCategorySeq lowerCategorySeq; // 카테고리 PK
 
     @Value
-    public class ItemSeq {
+    public static class ItemSeq {
         private Long value;
     }
 

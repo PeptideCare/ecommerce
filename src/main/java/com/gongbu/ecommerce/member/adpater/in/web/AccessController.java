@@ -14,14 +14,14 @@ public class AccessController {
     // 로그인
     @PostMapping("/ecommerce/login")
     public void login(
-            @RequestBody LoginRequest loginRequest) {
+            @RequestBody LoginRequest loginRequest) throws Exception {
         accessUseCase.login(loginRequest);
     }
 
     // 회원가입
     @PostMapping("/ecommerce/register")
     public void register(
-            @RequestBody RegisterRequest registerRequest) {
+            @RequestBody RegisterRequest registerRequest) throws Exception {
         accessUseCase.register(registerRequest);
     }
 
