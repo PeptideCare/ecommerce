@@ -29,14 +29,6 @@ public class AccessService implements AccessUseCase {
 
     @Override
     public void register(RegisterRequest registerRequest) throws Exception {
-
-        // 존재 여부 체크
-        Member findMember = accessMemberPort.loadMember(registerRequest.getMemberId());
-        if (findMember != null) {
-            System.out.println("already exist");
-            throw new Exception();
-        }
-
         MemberJpaEntity memberJpaEntity = registerRequest.mapToJpaEntity();
         Long memberSeq = accessMemberPort.insertMember(memberJpaEntity);
         if (memberSeq == null) {

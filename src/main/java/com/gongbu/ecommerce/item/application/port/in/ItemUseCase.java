@@ -10,9 +10,9 @@ public interface ItemUseCase {
 
     void addItem(ItemRequest itemRequest);
 
-    void removeItem(String itemId);
+    void removeItem(Long itemId);
 
-    Item getItem();
+    Item getItem(Long itemId);
 
     List<Item> getItemList();
 }
