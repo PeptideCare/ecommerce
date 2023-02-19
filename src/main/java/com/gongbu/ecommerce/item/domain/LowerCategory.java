@@ -1,12 +1,10 @@
 package com.gongbu.ecommerce.item.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
-@Getter
+@Data
 @RequiredArgsConstructor
+@Builder
 public class LowerCategory {
 
     private final LowerCategorySeq seq; // PK

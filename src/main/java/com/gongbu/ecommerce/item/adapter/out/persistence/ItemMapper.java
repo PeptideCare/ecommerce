@@ -14,19 +14,19 @@ public class ItemMapper {
                 .name(itemJpaEntity.getName())
                 .rating(itemJpaEntity.getRating())
                 .price(itemJpaEntity.getPrice())
-                .lowerCategorySeq(new LowerCategory.LowerCategorySeq(itemJpaEntity.getLowerCategorySeq()))
+                .lowerCategorySeq(new LowerCategory.LowerCategorySeq(itemJpaEntity.getLowerCategoryJpaEntity().getSeq()))
                 .build();
         return item;
     }
 
-    ItemJpaEntity mapToJpaEntity(Item item) {
+    ItemJpaEntity mapToJpaEntity(Item item, LowerCategoryJpaEntity lowerCategoryJpaEntity) {
         ItemJpaEntity itemJpaEntity = ItemJpaEntity.builder()
                 .seq(item.getSeq().getValue())
                 .stock(item.getStock())
                 .name(item.getName())
                 .rating(item.getRating())
                 .price(item.getPrice())
-                .lowerCategorySeq(item.getLowerCategorySeq().getValue())
+                .lowerCategoryJpaEntity(lowerCategoryJpaEntity)
                 .build();
         return itemJpaEntity;
     }

@@ -6,23 +6,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "item")
+@Table(name = "lowerCategory")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ItemJpaEntity {
+public class LowerCategoryJpaEntity {
     @Id
     @GeneratedValue
     private Long seq; // PK
-    private int stock; // 재고수량
-    private String name; // 물품 이름
-    private double rating; // 평점
-    private Long price; // 가격
+    private String name; // 카테고리 이름
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seq")
-    private LowerCategoryJpaEntity lowerCategoryJpaEntity;
+    private UpperCategoryJpaEntity upperCategoryJpaEntity;
+
+    @OneToMany(mappedBy = "lowerCategoryJpaEntity")
+    private List<ItemJpaEntity> itemJpaEntity;
 }
