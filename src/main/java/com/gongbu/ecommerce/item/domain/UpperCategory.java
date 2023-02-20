@@ -1,11 +1,10 @@
 package com.gongbu.ecommerce.item.domain;
 
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @RequiredArgsConstructor
 public class UpperCategory {
 
@@ -13,7 +12,7 @@ public class UpperCategory {
     private final UpperCategoryType name; // 카테고리 이름
 
     @Value
-    public class UpperCategorySeq {
+    public static class UpperCategorySeq {
         private Long value;
     }
 }

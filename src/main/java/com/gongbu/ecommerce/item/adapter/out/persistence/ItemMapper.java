@@ -20,6 +20,7 @@ public class ItemMapper {
     }
 
     ItemJpaEntity mapToJpaEntity(Item item, LowerCategoryJpaEntity lowerCategoryJpaEntity) {
+
         ItemJpaEntity itemJpaEntity = ItemJpaEntity.builder()
                 .seq(item.getSeq().getValue())
                 .stock(item.getStock())

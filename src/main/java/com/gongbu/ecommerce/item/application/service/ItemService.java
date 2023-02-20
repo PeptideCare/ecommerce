@@ -3,7 +3,9 @@ package com.gongbu.ecommerce.item.application.service;
 import com.gongbu.ecommerce.item.adapter.in.web.ItemRequest;
 import com.gongbu.ecommerce.item.adapter.out.persistence.ItemJpaEntity;
 import com.gongbu.ecommerce.item.adapter.out.persistence.ItemMapper;
+import com.gongbu.ecommerce.item.adapter.out.persistence.LowerCategoryJpaEntity;
 import com.gongbu.ecommerce.item.application.port.in.ItemUseCase;
+import com.gongbu.ecommerce.item.application.port.out.CategoryPort;
 import com.gongbu.ecommerce.item.application.port.out.ItemPort;
 import com.gongbu.ecommerce.item.domain.Item;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +18,12 @@ import java.util.List;
 public class ItemService implements ItemUseCase {
 
     private final ItemPort itemPort;
+    private final CategoryPort categoryPort;
 
     @Override
     public void addItem(ItemRequest itemRequest) {
-        ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity();
+        LowerCategoryJpaEntity lowerCategoryJpaEntity = categoryPort.getLowerCategoryJpaEntity(itemRequest.getLowerCategorySeq());
+        ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity(lowerCategoryJpaEntity);
         itemPort.addItem(itemJpaEntity);
         System.out.println("Success to Add Item");
     }

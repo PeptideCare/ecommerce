@@ -1,6 +1,7 @@
 package com.gongbu.ecommerce.item.adapter.in.web;
 
 import com.gongbu.ecommerce.item.adapter.out.persistence.ItemJpaEntity;
+import com.gongbu.ecommerce.item.adapter.out.persistence.LowerCategoryJpaEntity;
 import lombok.Data;
 
 @Data
@@ -12,11 +13,12 @@ public class ItemRequest {
     private Long lowerCategorySeq;
 
     // add 용 mapper
-    public ItemJpaEntity mapToJpaEntity() {
+    public ItemJpaEntity mapToJpaEntity(LowerCategoryJpaEntity lowerCategoryJpaEntity) {
         ItemJpaEntity itemJpaEntity = ItemJpaEntity.builder()
                 .stock(stock)
                 .name(name)
                 .price(price)
+                .lowerCategoryJpaEntity(lowerCategoryJpaEntity)
                 .build();
 
         return itemJpaEntity;

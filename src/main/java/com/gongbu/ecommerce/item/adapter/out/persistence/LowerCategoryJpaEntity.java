@@ -25,5 +25,5 @@ public class LowerCategoryJpaEntity {
     private UpperCategoryJpaEntity upperCategoryJpaEntity;
 
     @OneToMany(mappedBy = "lowerCategoryJpaEntity")
-    private List<ItemJpaEntity> itemJpaEntity;
+    private List<ItemJpaEntity> itemJpaEntityList;
 }
