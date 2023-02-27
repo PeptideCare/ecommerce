@@ -21,6 +21,14 @@ public class MemberPersistentAdapter implements AccessMemberPort {
     }
 
     @Override
+    public MemberJpaEntity loadMemberJpaEntity(Long memberSeq) {
+        MemberJpaEntity memberJpaEntity = memberRepository.findById(memberSeq).
+                orElseThrow(EntityNotFoundException::new);
+
+        return memberJpaEntity;
+    }
+
+    @Override
     public Long insertMember(MemberJpaEntity memberJpaEntity) {
         MemberJpaEntity savedMemberJpaEntity = memberRepository.save(memberJpaEntity);
         return savedMemberJpaEntity.getSeq();

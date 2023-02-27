@@ -7,7 +7,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
+@Data
+@Builder
 public class Order {
     private final OrderSeq seq; // PK
     @NonNull private final Member.MemberSeq memberSeq; // 회원 PK
@@ -17,7 +18,7 @@ public class Order {
     private final LocalDateTime date; // 날짜
 
     @Value
-    public class OrderSeq {
+    public static class OrderSeq {
         private Long value;
     }
 }

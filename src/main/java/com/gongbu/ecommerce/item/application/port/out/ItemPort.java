@@ -8,7 +8,9 @@ import java.util.List;
 public interface ItemPort {
 
     void addItem(ItemJpaEntity itemJpaEntity);
-    Item loadItem(Long itemId);
-    void removeItem(Long itemId);
+    Item loadItem(Long itemSeq);
+
+    ItemJpaEntity loadItemJpaEntity(Long itemSeq);
+    void removeItem(Long itemSeq);
     List<Item> loadItemList();
 }

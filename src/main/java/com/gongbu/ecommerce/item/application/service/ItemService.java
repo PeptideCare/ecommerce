@@ -29,14 +29,14 @@ public class ItemService implements ItemUseCase {
     }
 
     @Override
-    public void removeItem(Long itemId) {
-        itemPort.removeItem(itemId);
+    public void removeItem(Long itemSeq) {
+        itemPort.removeItem(itemSeq);
         System.out.println("Success to Remove Item");
     }
 
     @Override
-    public Item getItem(Long itemId) {
-        Item findItem = itemPort.loadItem(itemId);
+    public Item getItem(Long itemSeq) {
+        Item findItem = itemPort.loadItem(itemSeq);
         System.out.println("Success to Get Item");
         return findItem;
     }

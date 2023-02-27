@@ -19,15 +19,22 @@ public class ItemRepositoryAdapter implements ItemPort {
     }
 
     @Override
-    public Item loadItem(Long itemId) {
-        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).
+    public Item loadItem(Long itemSeq) {
+        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemSeq).
                 orElseThrow(EntityNotFoundException::new);
         return itemMapper.mapToEntity(itemJpaEntity);
     }
 
     @Override
-    public void removeItem(Long itemId) {
-        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemId).
+    public ItemJpaEntity loadItemJpaEntity(Long itemSeq) {
+        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemSeq).
+                orElseThrow(EntityNotFoundException::new);
+        return itemJpaEntity;
+    }
+
+    @Override
+    public void removeItem(Long itemSeq) {
+        ItemJpaEntity itemJpaEntity = itemRepository.findById(itemSeq).
                 orElseThrow(EntityNotFoundException::new);
         itemRepository.delete(itemJpaEntity);
     }
