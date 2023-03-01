@@ -2,12 +2,10 @@ package com.gongbu.ecommerce.order.domain;
 
 import com.gongbu.ecommerce.item.domain.Item;
 import com.gongbu.ecommerce.member.domain.Member;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @RequiredArgsConstructor
 public class Basket {
 
@@ -18,7 +16,7 @@ public class Basket {
     private final Long sumPrice; // // 총 금액
 
     @Value
-    public class BasketSeq {
+    public static class BasketSeq {
         private Long value;
     }
 }

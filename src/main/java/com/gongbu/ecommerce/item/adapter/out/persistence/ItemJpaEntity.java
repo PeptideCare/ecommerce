@@ -1,11 +1,14 @@
 package com.gongbu.ecommerce.item.adapter.out.persistence;
 
+import com.gongbu.ecommerce.order.adapter.out.persistence.BasketJpaEntity;
+import com.gongbu.ecommerce.order.adapter.out.persistence.OrderJpaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -21,6 +24,12 @@ public class ItemJpaEntity {
     private String name; // 물품 이름
     private double rating; // 평점
     private Long price; // 가격
+
+    @OneToMany(mappedBy = "itemJpaEntity")
+    private List<BasketJpaEntity> basketJpaEntityList;
+
+    @OneToMany(mappedBy = "itemJpaEntity")
+    private List<OrderJpaEntity> orderJpaEntityList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seq")
