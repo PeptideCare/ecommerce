@@ -1,13 +1,11 @@
 package com.gongbu.ecommerce.board.domain;
 
 import com.gongbu.ecommerce.member.domain.Member;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
 @RequiredArgsConstructor
-@Getter
+@Data
+@Builder
 public class Board {
     private final BoardSeq seq; // PK
     @NonNull private Member.MemberSeq memberSeq; // 회원 PK
@@ -18,7 +16,7 @@ public class Board {
     private final Long watching; // 조회수
 
     @Value
-    public class BoardSeq {
+    public static class BoardSeq {
         private Long value;
     }
 

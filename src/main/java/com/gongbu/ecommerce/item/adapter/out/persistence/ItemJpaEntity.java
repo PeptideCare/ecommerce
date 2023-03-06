@@ -1,5 +1,6 @@
 package com.gongbu.ecommerce.item.adapter.out.persistence;
 
+import com.gongbu.ecommerce.board.adapter.out.persistence.BoardJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.BasketJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.OrderJpaEntity;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class ItemJpaEntity {
 
     @OneToMany(mappedBy = "itemJpaEntity")
     private List<OrderJpaEntity> orderJpaEntityList;
+
+    @OneToMany(mappedBy = "boardJpaEntity")
+    private List<BoardJpaEntity> boardJpaEntityList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seq")
