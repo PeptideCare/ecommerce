@@ -10,7 +10,7 @@ public interface BoardUseCase {
 
     Board getBoard(Long boardSeq);
 
-    void insertComment();
+    void insertComment(Long boardSeq, String comment);
 
     void addHeart(Long boardSeq);
 }

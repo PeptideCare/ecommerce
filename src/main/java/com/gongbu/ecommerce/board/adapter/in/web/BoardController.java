@@ -35,4 +35,9 @@ public class BoardController {
     public void addHeart(@PathVariable ("boardSeq") Long boardSeq) {
         boardUseCase.addHeart(boardSeq);
     }
+
+    @PostMapping("/ecommerce/board/insertComment/{boardSeq}")
+    public void insertComment( @PathVariable ("boardSeq") Long boardSeq, String comment) {
+        boardUseCase.insertComment(boardSeq, comment);
+    }
 }

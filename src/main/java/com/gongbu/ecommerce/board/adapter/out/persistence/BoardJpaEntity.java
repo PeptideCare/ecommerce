@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name = "board")
 @Data
@@ -27,11 +29,18 @@ public class BoardJpaEntity {
     @JoinColumn(name = "seq")
     private MemberJpaEntity memberJpaEntity;
 
+    @OneToMany(mappedBy = "memberJpaEntity")
+    private List<CommentJpaEntity> commentJpaEntityList;
+
     public void toggleType() {
         this.type = "open".equalsIgnoreCase(this.type) ? "secret" : "open";
     }
 
     public void addHeart() {
         this.like += 1;
+    }
+
+    public void insertComment(CommentJpaEntity commentJpaEntity) {
+        this.commentJpaEntityList.add(commentJpaEntity);
     }
 }

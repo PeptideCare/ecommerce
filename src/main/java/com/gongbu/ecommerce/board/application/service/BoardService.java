@@ -28,7 +28,7 @@ public class BoardService implements BoardUseCase {
     @Override
     public void toggleType(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
-        findBoardJpaEntity.toggleType();
+        boardPort.toggleType(findBoardJpaEntity);
     }
 
     @Override
@@ -37,13 +37,14 @@ public class BoardService implements BoardUseCase {
     }
 
     @Override
-    public void insertComment() {
-
+    public void insertComment(Long boardSeq, String comment) {
+        BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
+        boardPort.insertComment(findBoardJpaEntity, comment);
     }
 
     @Override
     public void addHeart(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
-        findBoardJpaEntity.addHeart();
+        boardPort.addHeart(findBoardJpaEntity);
     }
 }

@@ -1,12 +1,10 @@
 package com.gongbu.ecommerce.board.domain;
 
 import com.gongbu.ecommerce.member.domain.Member;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @RequiredArgsConstructor
 public class Comment {
     private final CommentSeq seq; // PK
@@ -15,7 +13,7 @@ public class Comment {
     private final String context; // 댓글
 
     @Value
-    public class CommentSeq {
+    public static class CommentSeq {
         private Long value;
     }
 }

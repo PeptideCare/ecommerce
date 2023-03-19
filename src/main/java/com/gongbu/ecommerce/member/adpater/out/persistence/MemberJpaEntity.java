@@ -1,5 +1,6 @@
 package com.gongbu.ecommerce.member.adpater.out.persistence;
 
+import com.gongbu.ecommerce.board.adapter.out.persistence.CommentJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.BasketJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.OrderJpaEntity;
 import lombok.AllArgsConstructor;
@@ -32,4 +33,7 @@ public class MemberJpaEntity {
 
     @OneToMany(mappedBy = "memberJpaEntity")
     private List<OrderJpaEntity> orderJpaEntityList;
+
+    @OneToMany(mappedBy = "memberJpaEntity")
+    private List<CommentJpaEntity> commentJpaEntityList;
 }
