@@ -3,10 +3,12 @@ package com.gongbu.ecommerce.member.adpater.out.persistence;
 import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 
 @RequiredArgsConstructor
+@Component
 public class MemberPersistentAdapter implements AccessMemberPort {
 
     private final MemberMapper memberMapper;

@@ -3,12 +3,14 @@ package com.gongbu.ecommerce.item.adapter.out.persistence;
 import com.gongbu.ecommerce.item.application.port.out.ItemPort;
 import com.gongbu.ecommerce.item.domain.Item;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Component
 public class ItemRepositoryAdapter implements ItemPort {
 
     private final ItemRepository itemRepository;

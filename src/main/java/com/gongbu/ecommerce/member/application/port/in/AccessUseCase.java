@@ -6,8 +6,8 @@ import com.gongbu.ecommerce.member.domain.Member;
 
 public interface AccessUseCase {
 
-    void login(LoginRequest loginRequest) throws Exception;
+    Long login(LoginRequest loginRequest) throws Exception;
 
-    void register(RegisterRequest registerRequest) throws Exception;
+    Long register(RegisterRequest registerRequest) throws Exception;
 
 }

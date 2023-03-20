@@ -4,10 +4,12 @@ import com.gongbu.ecommerce.item.application.port.out.CategoryPort;
 import com.gongbu.ecommerce.item.domain.LowerCategory;
 import com.gongbu.ecommerce.item.domain.UpperCategory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Component
 public class CategoryRepositoryAdapter implements CategoryPort {
     private final LowerCategoryRepository lowerCategoryRepository;
     private final UpperCategoryRepository upperCategoryRepository;

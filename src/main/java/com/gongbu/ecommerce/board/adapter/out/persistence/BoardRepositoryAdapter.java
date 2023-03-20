@@ -3,14 +3,14 @@ package com.gongbu.ecommerce.board.adapter.out.persistence;
 import com.gongbu.ecommerce.board.application.port.out.BoardPort;
 import com.gongbu.ecommerce.member.adpater.out.persistence.MemberJpaEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @RequiredArgsConstructor
+@Component
 public class BoardRepositoryAdapter implements BoardPort {
     private final BoardRepository boardRepository;
-    private final CommentRepository commentRepository;
 
     public void insertBoard(BoardJpaEntity boardJpaEntity) {
         boardRepository.save(boardJpaEntity);

@@ -13,16 +13,16 @@ public class AccessController {
 
     // 로그인
     @PostMapping("/ecommerce/login")
-    public void login(
+    public Long login(
             @RequestBody LoginRequest loginRequest) throws Exception {
-        accessUseCase.login(loginRequest);
+        return accessUseCase.login(loginRequest);
     }
 
     // 회원가입
     @PostMapping("/ecommerce/register")
-    public void register(
+    public Long register(
             @RequestBody RegisterRequest registerRequest) throws Exception {
-        accessUseCase.register(registerRequest);
+        return accessUseCase.register(registerRequest);
     }
 
 }

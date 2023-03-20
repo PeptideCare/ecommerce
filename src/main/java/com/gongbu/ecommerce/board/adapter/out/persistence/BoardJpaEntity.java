@@ -26,7 +26,7 @@ public class BoardJpaEntity {
     private Long watching; // 조회수
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "memberSeq")
     private MemberJpaEntity memberJpaEntity;
 
     @OneToMany(mappedBy = "memberJpaEntity")

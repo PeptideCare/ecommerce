@@ -7,20 +7,23 @@ import com.gongbu.ecommerce.member.application.port.in.AccessUseCase;
 import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
+@Service
 @Transactional
 public class AccessService implements AccessUseCase {
 
     private final AccessMemberPort accessMemberPort;
 
     @Override
-    public void login(LoginRequest loginRequest) throws Exception {
+    public Long login(LoginRequest loginRequest) throws Exception {
         Member findMember = accessMemberPort.loadMember(loginRequest.getMemberId());
         if (loginRequest.getMemberPw().equals(findMember.getMemberPw())) {
             System.out.println("login success");
+            return findMember.getSeq().getValue();
         } else {
             System.out.println("password is wrong");
             throw new Exception();
@@ -28,7 +31,7 @@ public class AccessService implements AccessUseCase {
     }
 
     @Override
-    public void register(RegisterRequest registerRequest) throws Exception {
+    public Long register(RegisterRequest registerRequest) throws Exception {
         MemberJpaEntity memberJpaEntity = registerRequest.mapToJpaEntity();
         Long memberSeq = accessMemberPort.insertMember(memberJpaEntity);
         if (memberSeq == null) {
@@ -37,6 +40,7 @@ public class AccessService implements AccessUseCase {
 
         } else {
             System.out.println("register success");
+            return memberSeq;
         }
     }
 }

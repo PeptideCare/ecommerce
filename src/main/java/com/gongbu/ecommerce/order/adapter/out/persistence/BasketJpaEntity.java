@@ -24,10 +24,10 @@ public class BasketJpaEntity {
     private Long sumPrice; // 주문 금액
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "memberSeq")
     private MemberJpaEntity memberJpaEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "itemSeq")
     private ItemJpaEntity itemJpaEntity;
 }

@@ -32,10 +32,7 @@ public class ItemJpaEntity {
     @OneToMany(mappedBy = "itemJpaEntity")
     private List<OrderJpaEntity> orderJpaEntityList;
 
-    @OneToMany(mappedBy = "boardJpaEntity")
-    private List<BoardJpaEntity> boardJpaEntityList;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "lowerCategorySeq")
     private LowerCategoryJpaEntity lowerCategoryJpaEntity;
 }

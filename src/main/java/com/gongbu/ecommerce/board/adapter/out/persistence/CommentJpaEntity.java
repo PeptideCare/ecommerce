@@ -19,10 +19,10 @@ public class CommentJpaEntity {
     private String comment; // 댓글
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "memberSeq")
     private MemberJpaEntity memberJpaEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "boardSeq")
     private BoardJpaEntity boardJpaEntity;
 }

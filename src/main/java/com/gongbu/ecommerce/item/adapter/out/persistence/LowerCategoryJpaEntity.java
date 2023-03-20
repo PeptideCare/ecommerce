@@ -21,7 +21,7 @@ public class LowerCategoryJpaEntity {
     private String name; // 카테고리 이름
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "upperCategorySeq")
     private UpperCategoryJpaEntity upperCategoryJpaEntity;
 
     @OneToMany(mappedBy = "lowerCategoryJpaEntity")

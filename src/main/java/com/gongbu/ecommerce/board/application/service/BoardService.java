@@ -11,6 +11,8 @@ import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService implements BoardUseCase {
