@@ -22,14 +22,14 @@ public class BoardJpaEntity {
     private String title; // 제목
     private String context; // 본문
     private String type; // 공개 여부 (open, secret)
-    private Long like; // 좋아요
+    private Long heart; // 좋아요
     private Long watching; // 조회수
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberSeq")
     private MemberJpaEntity memberJpaEntity;
 
-    @OneToMany(mappedBy = "memberJpaEntity")
+    @OneToMany(mappedBy = "boardJpaEntity")
     private List<CommentJpaEntity> commentJpaEntityList;
 
     public void toggleType() {
@@ -37,7 +37,7 @@ public class BoardJpaEntity {
     }
 
     public void addHeart() {
-        this.like += 1;
+        this.heart += 1;
     }
 
     public void insertComment(CommentJpaEntity commentJpaEntity) {

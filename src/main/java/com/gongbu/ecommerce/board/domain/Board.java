@@ -12,7 +12,7 @@ public class Board {
     private final String title; // 제목
     private final String context; // 본문
     private final BoardType type; // 공개/비공개 타입
-    private final Long like; // 좋아요
+    private final Long heart; // 좋아요
     private final Long watching; // 조회수
 
     @Value

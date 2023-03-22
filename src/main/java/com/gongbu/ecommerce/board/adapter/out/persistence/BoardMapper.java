@@ -20,7 +20,7 @@ public class BoardMapper {
                 .title(boardJpaEntity.getTitle())
                 .context(boardJpaEntity.getContext())
                 .type(boardType)
-                .like(boardJpaEntity.getLike())
+                .heart(boardJpaEntity.getHeart())
                 .watching(boardJpaEntity.getWatching())
                 .memberSeq(new Member.MemberSeq(boardJpaEntity.getMemberJpaEntity().getSeq()))
                 .build();

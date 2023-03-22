@@ -18,7 +18,7 @@ public class BoardRequest {
                 .title(this.title)
                 .context(this.context)
                 .type(this.type)
-                .like(like)
+                .heart(like)
                 .watching(watching)
                 .memberJpaEntity(memberJpaEntity)
                 .build();
