@@ -21,6 +21,7 @@ public class AccessService implements AccessUseCase {
     @Override
     public Long login(LoginRequest loginRequest) throws Exception {
         Member findMember = accessMemberPort.loadMember(loginRequest.getMemberId());
+        // 비밀번호 검증
         if (loginRequest.getMemberPw().equals(findMember.getMemberPw())) {
             System.out.println("login success");
             return findMember.getSeq().getValue();
