@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ItemPort {
 
-    void addItem(ItemJpaEntity itemJpaEntity);
+    Long addItem(ItemJpaEntity itemJpaEntity);
     Item loadItem(Long itemSeq);
 
     ItemJpaEntity loadItemJpaEntity(Long itemSeq);

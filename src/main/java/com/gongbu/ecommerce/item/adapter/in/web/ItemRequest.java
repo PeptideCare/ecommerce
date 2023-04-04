@@ -15,6 +15,7 @@ public class ItemRequest {
     // add 용 mapper
     public ItemJpaEntity mapToJpaEntity(LowerCategoryJpaEntity lowerCategoryJpaEntity) {
         ItemJpaEntity itemJpaEntity = ItemJpaEntity.builder()
+                .seq(lowerCategoryJpaEntity.getSeq())
                 .stock(stock)
                 .name(name)
                 .price(price)

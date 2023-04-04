@@ -16,8 +16,9 @@ public class ItemRepositoryAdapter implements ItemPort {
     private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
     @Override
-    public void addItem(ItemJpaEntity itemJpaEntity) {
-        itemRepository.save(itemJpaEntity);
+    public Long addItem(ItemJpaEntity itemJpaEntity) {
+        ItemJpaEntity savedItemJpaEntity = itemRepository.save(itemJpaEntity);
+        return savedItemJpaEntity.getSeq();
     }
 
     @Override
