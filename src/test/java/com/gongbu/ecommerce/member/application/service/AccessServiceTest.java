@@ -1,8 +1,10 @@
 package com.gongbu.ecommerce.member.application.service;
 
+import com.gongbu.ecommerce.member.adpater.in.web.LoginRequest;
 import com.gongbu.ecommerce.member.adpater.in.web.RegisterRequest;
 import com.gongbu.ecommerce.member.adpater.out.persistence.MemberJpaEntity;
 import com.gongbu.ecommerce.member.adpater.out.persistence.MemberPersistentAdapter;
+import com.gongbu.ecommerce.member.application.port.out.AccessMemberPort;
 import com.gongbu.ecommerce.member.domain.Member;
 import com.gongbu.ecommerce.member.domain.MemberType;
 import org.junit.jupiter.api.DisplayName;
@@ -20,31 +22,34 @@ import static org.hamcrest.CoreMatchers.*;
 public class AccessServiceTest {
 
     @Mock
-    MemberPersistentAdapter memberPersistentAdapter;
+    AccessMemberPort accessMemberPort;
+
+    @InjectMocks
+    AccessService accessService;
 
     @Test
     @DisplayName("로그인 테스트")
-    public void loginTest() {
-        boolean login = false;
+    public void loginTest() throws Exception {
+        LoginRequest loginRequest = LoginRequest.builder()
+                .memberId("testId")
+                .memberPw("1234")
+                .build();
         Member member = Member.builder()
                 .seq(new Member.MemberSeq(1L))
-                .memberId("test")
+                .memberId("testId")
                 .memberPw("1234")
                 .memberType(MemberType.admin)
                 .myPoint(120L)
                 .build();
 
-        when(memberPersistentAdapter.loadMember("test")).thenReturn(member);
-
-        Member findMember = memberPersistentAdapter.loadMember("test");
-        if (findMember.getMemberPw().equals("1234")) login = true;
-        assertThat(login, is(equalTo(true)));
+        when(accessMemberPort.loadMember("testId")).thenReturn(member);
+        Long seq = accessService.login(loginRequest);
+        assertThat(seq, is(equalTo(1L)));
     }
 
     @Test
     @DisplayName("회원가입 테스트")
-    public void registerTest() {
-        boolean register = false;
+    public void registerTest() throws Exception {
         RegisterRequest registerRequest = RegisterRequest.builder()
                 .memberId("test")
                 .memberPw("1234")
@@ -52,10 +57,9 @@ public class AccessServiceTest {
                 .build();
         MemberJpaEntity memberJpaEntity = registerRequest.mapToJpaEntity();
 
-        when(memberPersistentAdapter.insertMember(memberJpaEntity)).thenReturn(1L);
+        when(accessMemberPort.insertMember(memberJpaEntity)).thenReturn(1L);
 
-        Long seq = memberPersistentAdapter.insertMember(memberJpaEntity);
-        if (seq != null) register = true;
-        assertThat(register, is(equalTo(true)));
+        Long seq = accessService.register(registerRequest);
+        assertThat(seq, is(equalTo(1L)));
     }
 }

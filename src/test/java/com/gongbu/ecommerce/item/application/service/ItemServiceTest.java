@@ -2,6 +2,8 @@ package com.gongbu.ecommerce.item.application.service;
 
 import com.gongbu.ecommerce.item.adapter.in.web.ItemRequest;
 import com.gongbu.ecommerce.item.adapter.out.persistence.*;
+import com.gongbu.ecommerce.item.application.port.out.CategoryPort;
+import com.gongbu.ecommerce.item.application.port.out.ItemPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,9 +20,12 @@ import static org.hamcrest.CoreMatchers.*;
 @ExtendWith(MockitoExtension.class)
 public class ItemServiceTest {
     @Mock
-    CategoryRepositoryAdapter categoryRepositoryAdapter;
+    ItemPort itemPort;
     @Mock
-    ItemRepositoryAdapter itemRepositoryAdapter;
+    CategoryPort categoryPort;
+
+    @InjectMocks
+    ItemService itemService;
 
     @Test
     public void addItemTest() {
@@ -38,16 +43,12 @@ public class ItemServiceTest {
         itemRequest.setName("v-neck");
         itemRequest.setStock(10);
         itemRequest.setPrice(10000L);
+        ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity(lowerCategoryJpaEntity);
 
-        when(categoryRepositoryAdapter.getLowerCategoryJpaEntity(1L)).thenReturn(lowerCategoryJpaEntity);
+        when(categoryPort.getLowerCategoryJpaEntity(1L)).thenReturn(lowerCategoryJpaEntity);
+        when(itemPort.addItem(itemJpaEntity)).thenReturn(2L);
 
-
-        LowerCategoryJpaEntity findLowerCategoryJpaEntity = categoryRepositoryAdapter.getLowerCategoryJpaEntity(1L);
-        ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity(findLowerCategoryJpaEntity);
-
-        when(itemRepositoryAdapter.addItem(itemJpaEntity)).thenReturn(itemJpaEntity.getSeq());
-        Long seq = itemRepositoryAdapter.addItem(itemJpaEntity);
-
-        assertThat(seq, is(equalTo(1L)));
+        Long seq = itemService.addItem(itemRequest);
+        assertThat(seq, is(equalTo(2L)));
     }
 }

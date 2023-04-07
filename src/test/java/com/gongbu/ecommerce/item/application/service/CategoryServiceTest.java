@@ -1,6 +1,7 @@
 package com.gongbu.ecommerce.item.application.service;
 
 import com.gongbu.ecommerce.item.adapter.out.persistence.CategoryRepositoryAdapter;
+import com.gongbu.ecommerce.item.application.port.out.CategoryPort;
 import com.gongbu.ecommerce.item.domain.LowerCategory;
 import com.gongbu.ecommerce.item.domain.LowerCategoryType;
 import com.gongbu.ecommerce.item.domain.UpperCategory;
@@ -8,6 +9,7 @@ import com.gongbu.ecommerce.item.domain.UpperCategoryType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -19,7 +21,10 @@ import static org.hamcrest.CoreMatchers.*;
 public class CategoryServiceTest {
 
     @Mock
-    CategoryRepositoryAdapter categoryRepositoryAdapter;
+    CategoryPort categoryPort;
+
+    @InjectMocks
+    CategoryService categoryService;
 
     @Test
     @DisplayName("getLowerCategory 테스트")
@@ -30,10 +35,10 @@ public class CategoryServiceTest {
                         .upperCategorySeq(new UpperCategory.UpperCategorySeq(1L))
                         .build();
 
-        when(categoryRepositoryAdapter.getLowerCategory(1L)).thenReturn(lowerCategory);
-        LowerCategory findLowerCategory = categoryRepositoryAdapter.getLowerCategory(lowerCategory.getSeq().getValue());
+        when(categoryPort.getLowerCategory(1L)).thenReturn(lowerCategory);
+        LowerCategory findLowerCategory = categoryService.getLowerCategory(lowerCategory.getSeq().getValue());
 
-        assertThat(lowerCategory.getSeq().getValue(), is(equalTo(findLowerCategory.getSeq().getValue())));
+        assertThat(findLowerCategory.getSeq().getValue(), is(equalTo(1L)));
     }
 
     @Test
@@ -44,9 +49,9 @@ public class CategoryServiceTest {
                         .name(UpperCategoryType.valueOf("clothes"))
                         .build();
 
-        when(categoryRepositoryAdapter.getUpperCategory(1L)).thenReturn(upperCategory);
-        UpperCategory findUpperCategory = categoryRepositoryAdapter.getUpperCategory(upperCategory.getSeq().getValue());
+        when(categoryPort.getUpperCategory(1L)).thenReturn(upperCategory);
+        UpperCategory findUpperCategory = categoryService.getUpperCategory(upperCategory.getSeq().getValue());
 
-        assertThat(upperCategory.getSeq().getValue(), is(equalTo(findUpperCategory.getSeq().getValue())));
+        assertThat(findUpperCategory.getSeq().getValue(), is(equalTo(1L)));
     }
 }

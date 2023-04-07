@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ItemUseCase {
 
-    void addItem(ItemRequest itemRequest);
+    Long addItem(ItemRequest itemRequest);
 
     void removeItem(Long itemId);
 

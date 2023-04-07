@@ -21,11 +21,11 @@ public class ItemService implements ItemUseCase {
     private final CategoryPort categoryPort;
 
     @Override
-    public void addItem(ItemRequest itemRequest) {
+    public Long addItem(ItemRequest itemRequest) {
         LowerCategoryJpaEntity lowerCategoryJpaEntity = categoryPort.getLowerCategoryJpaEntity(itemRequest.getLowerCategorySeq());
         ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity(lowerCategoryJpaEntity);
-        itemPort.addItem(itemJpaEntity);
         System.out.println("Success to Add Item");
+        return itemPort.addItem(itemJpaEntity);
     }
 
     @Override

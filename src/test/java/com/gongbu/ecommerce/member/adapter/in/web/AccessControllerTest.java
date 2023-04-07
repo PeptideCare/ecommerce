@@ -1,10 +1,13 @@
 package com.gongbu.ecommerce.member.adapter.in.web;
 
+import com.gongbu.ecommerce.member.adpater.in.web.AccessController;
 import com.gongbu.ecommerce.member.adpater.in.web.LoginRequest;
+import com.gongbu.ecommerce.member.application.port.in.AccessUseCase;
 import com.gongbu.ecommerce.member.application.service.AccessService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,10 @@ public class AccessControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Mock
-    AccessService accessService;
+    AccessUseCase accessUseCase;
+
+    @InjectMocks
+    AccessController accessController;
 
     @DisplayName("로그인 테스트")
     @Test
@@ -35,10 +41,8 @@ public class AccessControllerTest {
                 .memberId("testId")
                 .memberPw("1234")
                 .build();
-
-        when(accessService.login(loginRequest)).thenReturn(1L);
-        Long seq = accessService.login(loginRequest);
-        assertThat(seq, is(equalTo(1L)));
+        Long seq = accessController.login(loginRequest);
+        assertThat(seq, is(equalTo(0L)));
     }
 
     @DisplayName("회원가입 테스트")
