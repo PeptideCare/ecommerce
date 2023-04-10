@@ -1,8 +1,11 @@
 package com.gongbu.ecommerce.item.adapter.in.web;
 
 import com.gongbu.ecommerce.item.application.port.in.ItemUseCase;
+import com.gongbu.ecommerce.item.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -12,28 +15,28 @@ public class ItemController {
 
     // 물품 추가
     @PostMapping("/ecommerce/item/add")
-    public void addItem(
+    public Long addItem(
             @RequestBody ItemRequest itemRequest) {
-        itemUseCase.addItem(itemRequest);
+        return itemUseCase.addItem(itemRequest);
     }
 
     // 물품 삭제
     @DeleteMapping("/ecommerce/item/remove/{itemId}")
-    public void removeItem(
+    public Long removeItem(
             @PathVariable ("itemId") Long itemId) {
-        itemUseCase.removeItem(itemId);
+        return itemUseCase.removeItem(itemId);
     }
 
     // 물품 불러오기
     @GetMapping("/ecommerce/item/get/{itemId}")
-    public void getItem(
+    public Item getItem(
             @PathVariable ("itemId") Long itemId) {
-        itemUseCase.getItem(itemId);
+        return itemUseCase.getItem(itemId);
     }
 
     // 물품 불러오기
     @GetMapping("/ecommerce/item/get/all")
-    public void getItemList() {
-        itemUseCase.getItemList();
+    public List<Item> getItemList() {
+        return itemUseCase.getItemList();
     }
 }

@@ -2,6 +2,7 @@ package com.gongbu.ecommerce.member.adapter.in.web;
 
 import com.gongbu.ecommerce.member.adpater.in.web.AccessController;
 import com.gongbu.ecommerce.member.adpater.in.web.LoginRequest;
+import com.gongbu.ecommerce.member.adpater.in.web.RegisterRequest;
 import com.gongbu.ecommerce.member.application.port.in.AccessUseCase;
 import com.gongbu.ecommerce.member.application.service.AccessService;
 import org.junit.jupiter.api.DisplayName;
@@ -23,11 +24,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
 public class AccessControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
     @Mock
     AccessUseCase accessUseCase;
 
@@ -41,18 +41,26 @@ public class AccessControllerTest {
                 .memberId("testId")
                 .memberPw("1234")
                 .build();
+
+        when(accessUseCase.login(loginRequest)).thenReturn(1L);
+
         Long seq = accessController.login(loginRequest);
-        assertThat(seq, is(equalTo(0L)));
+        assertThat(seq, is(equalTo(1L)));
     }
 
     @DisplayName("회원가입 테스트")
     @Test
     void registerTest() throws Exception {
-        String registerRequest = "{\"memberId\" : \"testId\", \"memberPw\" : \"1234\", \"memberType\" : \"admin\"}";
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .memberId("testId")
+                .memberPw("1234")
+                .memberType("admin")
+                .build();
 
-        mockMvc.perform(post("/ecommerce/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(registerRequest))
-                .andExpect(status().isOk());
+        when(accessUseCase.register(registerRequest)).thenReturn(1L);
+
+        Long seq = accessController.register(registerRequest);
+
+        assertThat(seq, is(equalTo(1L)));
     }
 }

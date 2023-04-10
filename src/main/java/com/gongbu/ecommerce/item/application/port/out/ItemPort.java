@@ -11,6 +11,6 @@ public interface ItemPort {
     Item loadItem(Long itemSeq);
 
     ItemJpaEntity loadItemJpaEntity(Long itemSeq);
-    void removeItem(Long itemSeq);
+    Long removeItem(Long itemSeq);
     List<Item> loadItemList();
 }

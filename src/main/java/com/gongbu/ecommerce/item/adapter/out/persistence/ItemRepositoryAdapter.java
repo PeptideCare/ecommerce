@@ -36,10 +36,11 @@ public class ItemRepositoryAdapter implements ItemPort {
     }
 
     @Override
-    public void removeItem(Long itemSeq) {
+    public Long removeItem(Long itemSeq) {
         ItemJpaEntity itemJpaEntity = itemRepository.findById(itemSeq).
                 orElseThrow(EntityNotFoundException::new);
         itemRepository.delete(itemJpaEntity);
+        return itemJpaEntity.getSeq();
     }
 
     @Override

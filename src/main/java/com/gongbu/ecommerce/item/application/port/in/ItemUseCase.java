@@ -10,7 +10,7 @@ public interface ItemUseCase {
 
     Long addItem(ItemRequest itemRequest);
 
-    void removeItem(Long itemId);
+    Long removeItem(Long itemId);
 
     Item getItem(Long itemId);
 

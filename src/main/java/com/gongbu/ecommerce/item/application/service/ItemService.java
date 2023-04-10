@@ -24,20 +24,17 @@ public class ItemService implements ItemUseCase {
     public Long addItem(ItemRequest itemRequest) {
         LowerCategoryJpaEntity lowerCategoryJpaEntity = categoryPort.getLowerCategoryJpaEntity(itemRequest.getLowerCategorySeq());
         ItemJpaEntity itemJpaEntity = itemRequest.mapToJpaEntity(lowerCategoryJpaEntity);
-        System.out.println("Success to Add Item");
         return itemPort.addItem(itemJpaEntity);
     }
 
     @Override
-    public void removeItem(Long itemSeq) {
-        itemPort.removeItem(itemSeq);
-        System.out.println("Success to Remove Item");
+    public Long removeItem(Long itemSeq) {
+        return itemPort.removeItem(itemSeq);
     }
 
     @Override
     public Item getItem(Long itemSeq) {
         Item findItem = itemPort.loadItem(itemSeq);
-        System.out.println("Success to Get Item");
         return findItem;
     }
 

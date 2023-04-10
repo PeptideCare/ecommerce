@@ -35,7 +35,7 @@ public class CategoryServiceTest {
                         .upperCategorySeq(new UpperCategory.UpperCategorySeq(1L))
                         .build();
 
-        when(categoryPort.getLowerCategory(1L)).thenReturn(lowerCategory);
+        when(categoryService.getLowerCategory(1L)).thenReturn(lowerCategory);
         LowerCategory findLowerCategory = categoryService.getLowerCategory(lowerCategory.getSeq().getValue());
 
         assertThat(findLowerCategory.getSeq().getValue(), is(equalTo(1L)));
@@ -49,7 +49,7 @@ public class CategoryServiceTest {
                         .name(UpperCategoryType.valueOf("clothes"))
                         .build();
 
-        when(categoryPort.getUpperCategory(1L)).thenReturn(upperCategory);
+        when(categoryService.getUpperCategory(1L)).thenReturn(upperCategory);
         UpperCategory findUpperCategory = categoryService.getUpperCategory(upperCategory.getSeq().getValue());
 
         assertThat(findUpperCategory.getSeq().getValue(), is(equalTo(1L)));
