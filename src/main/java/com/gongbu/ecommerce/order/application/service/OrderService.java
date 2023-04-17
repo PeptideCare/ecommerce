@@ -19,7 +19,7 @@ public class OrderService implements OrderUseCase {
     private final ItemPort itemPort;
 
     @Override
-    public void order(OrderRequest orderRequest) {
+    public Long order(OrderRequest orderRequest) {
         ItemJpaEntity findItemJpaEntity = itemPort.loadItemJpaEntity(orderRequest.getItemSeq());
         MemberJpaEntity findMemberJpaEntity = accessMemberPort.loadMemberJpaEntity(orderRequest.getMemberSeq());
         OrderJpaEntity orderJpaEntity = orderRequest.mapToJpaEntity(findMemberJpaEntity, findItemJpaEntity);
@@ -27,7 +27,6 @@ public class OrderService implements OrderUseCase {
         // 구매 포인트 10점 추가
         findMemberJpaEntity.setMyPoint(findMemberJpaEntity.getMyPoint() + 10);
 
-        orderPort.order(orderJpaEntity);
-        System.out.println("order success!!");
+        return orderPort.order(orderJpaEntity);
     }
 }

@@ -19,12 +19,11 @@ public class BasketService implements BasketUseCase {
     private final ItemPort itemPort;
 
     @Override
-    public void addBasket(BasketRequest basketRequest) {
+    public Long addBasket(BasketRequest basketRequest) {
         MemberJpaEntity findMemberJpaEntity = accessMemberPort.loadMemberJpaEntity(basketRequest.getMemberSeq());
         ItemJpaEntity findItemJpaEntity = itemPort.loadItemJpaEntity(basketRequest.getItemSeq());
         BasketJpaEntity basketJpaEntity = basketRequest.mapToJpaEntity(findMemberJpaEntity, findItemJpaEntity);
 
-        basketPort.addBasket(basketJpaEntity);
-        System.out.println("adding order in basket success");
+        return basketPort.addBasket(basketJpaEntity);
     }
 }

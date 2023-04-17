@@ -12,8 +12,8 @@ public class BasketController {
     private final BasketUseCase basketUseCase;
 
     @PostMapping("/ecommerce/basket")
-    public void addBasket(
+    public Long addBasket(
             @RequestBody BasketRequest basketRequest) {
-        basketUseCase.addBasket(basketRequest);
+        return basketUseCase.addBasket(basketRequest);
     }
 }

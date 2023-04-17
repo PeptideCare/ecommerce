@@ -3,9 +3,11 @@ package com.gongbu.ecommerce.order.adapter.in.web;
 import com.gongbu.ecommerce.item.adapter.out.persistence.ItemJpaEntity;
 import com.gongbu.ecommerce.member.adpater.out.persistence.MemberJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.BasketJpaEntity;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class BasketRequest {
     private Long memberSeq; // member PK
     private Long itemSeq; // item PK

@@ -3,11 +3,13 @@ package com.gongbu.ecommerce.order.adapter.in.web;
 import com.gongbu.ecommerce.item.adapter.out.persistence.ItemJpaEntity;
 import com.gongbu.ecommerce.member.adpater.out.persistence.MemberJpaEntity;
 import com.gongbu.ecommerce.order.adapter.out.persistence.OrderJpaEntity;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 public class OrderRequest {
 
     private Long memberSeq; // member PK

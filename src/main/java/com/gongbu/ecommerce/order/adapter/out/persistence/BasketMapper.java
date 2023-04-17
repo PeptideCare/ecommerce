@@ -13,7 +13,7 @@ public class BasketMapper {
                 .count(basketJpaEntity.getCount())
                 .sumPrice(basketJpaEntity.getSumPrice())
                 .itemSeq(new Item.ItemSeq(basketJpaEntity.getItemJpaEntity().getSeq()))
-                .memberSeq(new Member.MemberSeq(basketJpaEntity.getSeq()))
+                .memberSeq(new Member.MemberSeq(basketJpaEntity.getMemberJpaEntity().getSeq()))
                 .build();
         return basket;
     }

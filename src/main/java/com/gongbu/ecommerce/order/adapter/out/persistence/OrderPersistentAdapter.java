@@ -10,7 +10,8 @@ public class OrderPersistentAdapter implements OrderPort {
     private final OrderRepository orderRepository;
 
     @Override
-    public void order(OrderJpaEntity orderJpaEntity) {
-        orderRepository.save(orderJpaEntity);
+    public Long order(OrderJpaEntity orderJpaEntity) {
+        OrderJpaEntity savedOrderJpaEntity = orderRepository.save(orderJpaEntity);
+        return savedOrderJpaEntity.getSeq();
     }
 }

@@ -10,7 +10,8 @@ public class BasketPersistentAdapter implements BasketPort {
     private final BasketRepository basketRepository;
 
     @Override
-    public void addBasket(BasketJpaEntity basketJpaEntity) {
-        basketRepository.save(basketJpaEntity);
+    public Long addBasket(BasketJpaEntity basketJpaEntity) {
+        BasketJpaEntity savedBasketJpaEntity = basketRepository.save(basketJpaEntity);
+        return savedBasketJpaEntity.getSeq();
     }
 }

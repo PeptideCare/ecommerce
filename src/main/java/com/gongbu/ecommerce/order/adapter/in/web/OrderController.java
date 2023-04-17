@@ -12,8 +12,8 @@ public class OrderController {
     private final OrderUseCase orderUseCase;
 
     @PostMapping("/ecommerce/order")
-    public void order(
+    public Long order(
             @RequestBody OrderRequest orderRequest) {
-        orderUseCase.order(orderRequest);
+        return orderUseCase.order(orderRequest);
     }
 }
