@@ -4,10 +4,10 @@ import com.gongbu.ecommerce.board.adapter.out.persistence.BoardJpaEntity;
 import com.gongbu.ecommerce.board.adapter.out.persistence.CommentJpaEntity;
 
 public interface BoardPort {
-    void insertBoard(BoardJpaEntity boardJpaEntity);
+    Long insertBoard(BoardJpaEntity boardJpaEntity);
     BoardJpaEntity getBoardJpaEntity(Long boardSeq);
-    void insertComment(BoardJpaEntity boardJpaEntity, String comment);
-    void addHeart(BoardJpaEntity boardJpaEntity);
-    void toggleType(BoardJpaEntity boardJpaEntity);
+    Long insertComment(BoardJpaEntity boardJpaEntity, String comment);
+    Long addHeart(BoardJpaEntity boardJpaEntity);
+    String toggleType(BoardJpaEntity boardJpaEntity);
 
 }

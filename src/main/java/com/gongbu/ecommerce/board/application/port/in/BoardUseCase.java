@@ -4,13 +4,13 @@ import com.gongbu.ecommerce.board.adapter.in.web.BoardRequest;
 import com.gongbu.ecommerce.board.domain.Board;
 
 public interface BoardUseCase {
-    void insertBoard(BoardRequest boardRequest, Long memberSeq);
+    Long insertBoard(BoardRequest boardRequest, Long memberSeq);
 
-    void toggleType(Long boardSeq);
+    String toggleType(Long boardSeq);
 
     Board getBoard(Long boardSeq);
 
-    void insertComment(Long boardSeq, String comment);
+    Long insertComment(Long boardSeq, String comment);
 
-    void addHeart(Long boardSeq);
+    Long addHeart(Long boardSeq);
 }

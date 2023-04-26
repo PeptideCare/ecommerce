@@ -21,16 +21,16 @@ public class BoardService implements BoardUseCase {
     private final BoardMapper boardMapper;
 
     @Override
-    public void insertBoard(BoardRequest boardRequest, Long memberSeq) {
+    public Long insertBoard(BoardRequest boardRequest, Long memberSeq) {
         MemberJpaEntity findMemberJpaEntity = accessMemberPort.loadMemberJpaEntity(memberSeq);
         BoardJpaEntity boardJpaEntity = boardRequest.mapToJpaEntity(findMemberJpaEntity);
-        boardPort.insertBoard(boardJpaEntity);
+        return boardPort.insertBoard(boardJpaEntity);
     }
 
     @Override
-    public void toggleType(Long boardSeq) {
+    public String toggleType(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
-        boardPort.toggleType(findBoardJpaEntity);
+        return boardPort.toggleType(findBoardJpaEntity);
     }
 
     @Override
@@ -39,14 +39,14 @@ public class BoardService implements BoardUseCase {
     }
 
     @Override
-    public void insertComment(Long boardSeq, String comment) {
+    public Long insertComment(Long boardSeq, String comment) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
-        boardPort.insertComment(findBoardJpaEntity, comment);
+        return boardPort.insertComment(findBoardJpaEntity, comment);
     }
 
     @Override
-    public void addHeart(Long boardSeq) {
+    public Long addHeart(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
-        boardPort.addHeart(findBoardJpaEntity);
+        return boardPort.addHeart(findBoardJpaEntity);
     }
 }

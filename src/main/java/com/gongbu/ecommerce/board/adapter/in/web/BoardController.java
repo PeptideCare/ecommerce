@@ -12,14 +12,14 @@ public class BoardController {
 
     // 게시판 쓰기
     @PostMapping("/ecommerce/board/add/{memberSeq}")
-    public void insertBoard(BoardRequest boardRequest, @PathVariable ("memberSeq") Long memberSeq) {
-        boardUseCase.insertBoard(boardRequest, memberSeq);
+    public Long insertBoard(BoardRequest boardRequest, @PathVariable ("memberSeq") Long memberSeq) {
+        return boardUseCase.insertBoard(boardRequest, memberSeq);
     }
 
     // 게시판 타입 변경 (공개, 비공개)
     @GetMapping("/ecommerce/board/toggle/{boardSeq}")
-    public void toggleBoard(@PathVariable ("boardSeq") Long boardSeq) {
-        boardUseCase.toggleType(boardSeq);
+    public String toggleBoard(@PathVariable ("boardSeq") Long boardSeq) {
+        return boardUseCase.toggleType(boardSeq);
     }
 
     // 게시판 불러오기
@@ -32,12 +32,13 @@ public class BoardController {
 
     // 좋아요
     @GetMapping("/ecommerce/board/addHeart/{boardSeq}")
-    public void addHeart(@PathVariable ("boardSeq") Long boardSeq) {
-        boardUseCase.addHeart(boardSeq);
+    public Long addHeart(@PathVariable ("boardSeq") Long boardSeq) {
+        return boardUseCase.addHeart(boardSeq);
     }
 
+    // 댓글
     @PostMapping("/ecommerce/board/insertComment/{boardSeq}")
-    public void insertComment( @PathVariable ("boardSeq") Long boardSeq, String comment) {
-        boardUseCase.insertComment(boardSeq, comment);
+    public Long insertComment( @PathVariable ("boardSeq") Long boardSeq, String comment) {
+        return boardUseCase.insertComment(boardSeq, comment);
     }
 }

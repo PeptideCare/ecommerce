@@ -12,8 +12,9 @@ import javax.persistence.EntityNotFoundException;
 public class BoardRepositoryAdapter implements BoardPort {
     private final BoardRepository boardRepository;
 
-    public void insertBoard(BoardJpaEntity boardJpaEntity) {
-        boardRepository.save(boardJpaEntity);
+    public Long insertBoard(BoardJpaEntity boardJpaEntity) {
+        BoardJpaEntity savedBoardJpaEntity = boardRepository.save(boardJpaEntity);
+        return savedBoardJpaEntity.getSeq();
     }
 
     public BoardJpaEntity getBoardJpaEntity(Long boardSeq) {
@@ -21,18 +22,18 @@ public class BoardRepositoryAdapter implements BoardPort {
                 orElseThrow(EntityNotFoundException::new);
         return findBoardJpaEntity;
     }
-    public void insertComment(BoardJpaEntity boardJpaEntity, String comment) {
+    public Long insertComment(BoardJpaEntity boardJpaEntity, String comment) {
         CommentJpaEntity commentJpaEntity = CommentJpaEntity.builder()
                         .comment(comment)
                         .boardJpaEntity(boardJpaEntity)
                         .memberJpaEntity(boardJpaEntity.getMemberJpaEntity())
                         .build();
-        boardJpaEntity.insertComment(commentJpaEntity);
+        return boardJpaEntity.insertComment(commentJpaEntity);
     }
-    public void addHeart(BoardJpaEntity boardJpaEntity) {
-        boardJpaEntity.addHeart();
+    public Long addHeart(BoardJpaEntity boardJpaEntity) {
+        return boardJpaEntity.addHeart();
     }
-    public void toggleType(BoardJpaEntity boardJpaEntity) {
-        boardJpaEntity.toggleType();
+    public String toggleType(BoardJpaEntity boardJpaEntity) {
+        return boardJpaEntity.toggleType();
     }
 }

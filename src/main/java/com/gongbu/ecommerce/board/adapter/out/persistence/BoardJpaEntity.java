@@ -32,15 +32,16 @@ public class BoardJpaEntity {
     @OneToMany(mappedBy = "boardJpaEntity")
     private List<CommentJpaEntity> commentJpaEntityList;
 
-    public void toggleType() {
-        this.type = "open".equalsIgnoreCase(this.type) ? "secret" : "open";
+    public String toggleType() {
+        return this.type = "open".equalsIgnoreCase(this.type) ? "secret" : "open";
     }
 
-    public void addHeart() {
-        this.heart += 1;
+    public Long addHeart() {
+        return this.heart += 1;
     }
 
-    public void insertComment(CommentJpaEntity commentJpaEntity) {
+    public Long insertComment(CommentJpaEntity commentJpaEntity) {
         this.commentJpaEntityList.add(commentJpaEntity);
+        return commentJpaEntity.getSeq();
     }
 }
