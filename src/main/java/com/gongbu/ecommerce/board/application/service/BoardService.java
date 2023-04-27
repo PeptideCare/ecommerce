@@ -20,6 +20,7 @@ public class BoardService implements BoardUseCase {
     private final AccessMemberPort accessMemberPort;
     private final BoardMapper boardMapper;
 
+    // 게시판 insert
     @Override
     public Long insertBoard(BoardRequest boardRequest, Long memberSeq) {
         MemberJpaEntity findMemberJpaEntity = accessMemberPort.loadMemberJpaEntity(memberSeq);
@@ -27,23 +28,27 @@ public class BoardService implements BoardUseCase {
         return boardPort.insertBoard(boardJpaEntity);
     }
 
+    // 게시판 타입 변경
     @Override
     public String toggleType(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
         return boardPort.toggleType(findBoardJpaEntity);
     }
 
+    // 게시판 불러오기
     @Override
     public Board getBoard(Long boardSeq) {
         return boardMapper.mapToEntity(boardPort.getBoardJpaEntity(boardSeq));
     }
 
+    // 댓글 쓰기
     @Override
     public Long insertComment(Long boardSeq, String comment) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
         return boardPort.insertComment(findBoardJpaEntity, comment);
     }
 
+    // 좋아요
     @Override
     public Long addHeart(Long boardSeq) {
         BoardJpaEntity findBoardJpaEntity = boardPort.getBoardJpaEntity(boardSeq);
